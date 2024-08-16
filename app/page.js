@@ -5,8 +5,8 @@ import { Container, AppBar, Toolbar, Typography, Button, Box, Grid, Card, CardCo
 import Head from "next/head"
 
 export default function Home() {
-  return (
-    <Container maxWidth="lg">
+  return (  
+    <Container maxWidth="100vw">
       <Head>
         <title>Flashcard Buddy</title>
         <meta name="description" content="Create flashcards from your text with ease" />
@@ -30,8 +30,8 @@ export default function Home() {
             Flashcard Buddy
           </Typography>
           <SignedOut>
-            <Button color="inherit" sx={{ fontFamily: "'Roboto', sans-serif", fontWeight: 300, ml: 2 }}>Login</Button>
-            <Button color="inherit" sx={{ fontFamily: "'Roboto', sans-serif", fontWeight: 300, ml: 2 }}>Sign up</Button>
+            <Button color="inherit" sx={{ fontFamily: "'Roboto', sans-serif", fontWeight: 300, ml: 2 }} href="/sign-in">Login</Button>
+            <Button color="inherit" sx={{ fontFamily: "'Roboto', sans-serif", fontWeight: 300, ml: 2 }} href="/sign-up">Sign up</Button>
           </SignedOut>
           <SignedIn>
             <UserButton />
@@ -50,6 +50,7 @@ export default function Home() {
           Your friendly companion for creating flashcards from your own text!
         </Typography>
         <Button 
+          href="/generate"
           variant="contained" 
           color="primary" 
           sx={{ 
