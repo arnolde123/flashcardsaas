@@ -78,18 +78,18 @@ export default function Generate() {
   
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data()
-        const collections = [...(userData.flashcards || []), { name }]
-        if (collections.find((f) => f.name === name)) {
-          alert('A flashcard set with this name already exists')
-          setIsLoading(false)
-          return
+        const collections = userData.flashcards || []
+        if (collections.some((f) => f.name.toLowerCase() === name.toLowerCase())) {
+            alert('A flashcard set with this name already exists')
+            setIsLoading(false)
+            return
         } else {
-          collections.push({ name })
-          batch.set(userDocRef, { flashcards: collections }, { merge: true })
+            collections.push({ name })
+            batch.set(userDocRef, { flashcards: collections }, { merge: true })
         }
-      } else {
-        batch.set(userDocRef, { flashcards: [{ name }] })
-      }
+        } else {
+        batch.set(userDocRef, { flashcards: [{ name}] })
+        }
   
       const colRef = collection(userDocRef, name)
       flashcards.forEach((flashcard) => {
