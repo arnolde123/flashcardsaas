@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image"
 import getStripe from "@/utils/get-stripe"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
@@ -5,6 +6,32 @@ import { Container, AppBar, Toolbar, Typography, Button, Box, Grid, Card, CardCo
 import Head from "next/head"
 
 export default function Home() {
+  const handleSubmit = async () => {
+    const checkoutSession = await fetch('/api/checkout_sessions', {
+      method: 'POST',
+      headers: {
+        origin: 'https://localhost:3000'
+      },
+      
+    })
+
+    const checkoutSessionJson = await checkoutSession.json()
+
+    if (checkoutSession.statusCode === 500) {
+      console.log(checkoutSession.message)
+      return
+    }
+
+    const stripe = await getStripe()
+    const {error} = await stripe.redirectToCheckout({ 
+      sessionId: checkoutSessionJson.id 
+    })
+
+    if (error) {
+      console.warn(error.message)
+    }
+  } 
+
   return (  
     <Container maxWidth="100vw">
       <Head>
@@ -14,13 +41,13 @@ export default function Home() {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <style>{`
           body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f0f4f8;
+            margin: 0,
+            padding: 0,
+            font-family: 'Roboto', sans-serif,
+            background-color: #f0f4f8,
           }
           .gutterbottom {
-            margin-bottom: 16px;
+            margin-bottom: 16px,
           }
         `}</style>
       </Head>
@@ -178,6 +205,7 @@ export default function Home() {
                       boxShadow: '0 6px 8px rgba(74, 144, 226, 0.4)',
                     }
                   }}
+                  onClick={handleSubmit} 
                 >
                   Choose Pro
                 </Button>
