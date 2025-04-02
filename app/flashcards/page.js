@@ -21,7 +21,8 @@ export default function Flashcard() {
   const router = useRouter()
   useEffect(() => {
     async function getFlashcards() {
-        if (!user) return
+        if (!user) return 
+        
 
         const userDocRef = doc(collection(db, 'users'), user.id)
         const userDocSnap = await getDoc(userDocRef)
