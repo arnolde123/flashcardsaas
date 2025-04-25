@@ -1,7 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import getStripe from '@/utils/getStripe'
 import { useSearchParams } from 'next/navigation'
 
 const ResultPage = () => {
