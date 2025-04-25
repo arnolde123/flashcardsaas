@@ -1,20 +1,19 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+'use client'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Roboto } from 'next/font/google'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "Flashcard Buddy",
-  description: "Create flashcards from your text with ease",
-};
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+})
 
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
+      <html lang="en" className={roboto.className}>
+        <body>{children}</body>
       </html>
     </ClerkProvider>
-  );
+  )
 }

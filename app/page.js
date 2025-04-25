@@ -41,10 +41,10 @@ export default function Home() {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <style>{`
           body {
-            margin: 0,
-            padding: 0,
-            font-family: 'Roboto', sans-serif,
-            background-color: #f0f4f8,
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
           }
           .gutterbottom {
             margin-bottom: 16px,
@@ -97,7 +97,7 @@ export default function Home() {
             }
           }}
         >
-          Let's Get Started!
+          {"Let's"} Get Started!
         </Button>
       </Box>
 
